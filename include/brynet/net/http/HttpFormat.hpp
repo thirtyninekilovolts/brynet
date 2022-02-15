@@ -225,6 +225,31 @@ public:
         return ret;
     }
 
+    std::string getResult(const std::string& firstLine) const
+    {
+        std::string ret;        
+        ret = firstLine;
+        
+        ret += "\r\n";
+
+        for (auto& v : mHeadField)
+        {
+            ret += v.first;
+            ret += ": ";
+            ret += v.second;
+            ret += "\r\n";
+        }
+
+        ret += "\r\n";
+
+        if (!mBody.empty())
+        {
+            ret += mBody;
+        }
+
+        return ret;
+    }
+
 private:
     HTTP_RESPONSE_STATUS mStatus;
     std::map<std::string, std::string> mHeadField;
